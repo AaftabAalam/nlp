@@ -30,6 +30,9 @@ if uploaded_file:
         st.stop()
 
     st.subheader("Uploaded data preview")
+    #add on
+    st.session_state["chat_data"] = chat_data
+    #
     st.write("Data Preview:", chat_data)
 
     st.subheader("Choose a Metric")
@@ -65,30 +68,35 @@ if uploaded_file:
 
         elif selected_metric == "Consistency of Opinion":
             result = consistency_of_opinion(chat_data, positive_opinion, negative_opinion)
+            st.session_state['opinion_result'] = result
             st.write("---Analysis Of Consistency Of Openion---")
             for key, value in result.items():
                 st.write(f"{key}: {value}")
 
         elif selected_metric == 'Alertness in Conversation':
             result = alertness_in_conversation(chat_data, engagement_keywords, clarifying_keywords)
+            st.session_state['alertness_result'] = result
             st.write("---Analysis Of Alertness In Conversation---")
             for key, value in result.items():
                 st.write(f"{key}: {value}")
 
         elif selected_metric == 'Use of Sarcasm':
             result = detect_sarcasm(chat_data, sarcasm_indicators, exaggeration_phrases, contradictory_phrases)
+            st.session_state['sarcasm_result'] = result
             st.write("---Analysis Of Sarcasm---")
             for key, value in result.items():
                 st.write(f"{key}: {value}")
 
         elif selected_metric == 'High-Risk Words Usage':
             result = detect_high_risk_words(chat_data, high_risk_words)
+            st.session_state['risk_word_result'] = result
             st.write("---Analysis Of Risk Words---")
             for key, value in result.items():
                 st.write(f"{key}: {value}")
 
         elif selected_metric == 'Openness to Improve':
             result = detect_openness(chat_data, openness_keywords)
+            st.session_state['openness_result'] = result
             st.write("---Analysis Of Openness---")
             for key, value in result.items():
                 st.write(f"{key}: {value}")
@@ -107,4 +115,3 @@ if st.button("Submit Selected Text"):
         st.write("Your comment:", st.session_state.comment)
     else:
         st.warning("Please enter a portion of text to comment on.")
-

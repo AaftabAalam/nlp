@@ -97,9 +97,9 @@ negative_opinion = [
     "hate", "dislike", "avoid", "oppose", "disagree", "criticize", "reject", "condemn"
 ]
 
-def consistency_of_opinion(text, positive_keywords, negative_keywords):
-    positive_count = sum([len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE)) for word in positive_keywords])
-    negative_count = sum([len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE)) for word in negative_keywords])
+def consistency_of_opinion(text, positive_opinion, negative_opinion):
+    positive_count = sum([len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE)) for word in positive_opinion])
+    negative_count = sum([len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE)) for word in negative_opinion])
     
     total_count = positive_count + negative_count
     

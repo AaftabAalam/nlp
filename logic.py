@@ -109,7 +109,7 @@ def consistency_of_opinion(text, positive_keywords, negative_keywords):
 
 """,
     "Consistency of Opinion":"""
-def consistency_of_opinion(text, positive_keywords, negative_keywords):
+def consistency_of_opinion(text, positive_opinion, negative_opinion):
     positive_count = sum([len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE)) for word in positive_keywords])
     negative_count = sum([len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE)) for word in negative_keywords])
     
